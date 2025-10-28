@@ -19,7 +19,7 @@ public class CartItem {
 	private Long id;
 	
 	@ManyToOne
-	@JsonIgnore
+	@JsonIgnore //to ignore a field when serializing to JSON.
 	private Cart cart;
 	
 	@ManyToOne
@@ -34,7 +34,5 @@ public class CartItem {
 	private Integer sellingPrice;
 	
 	private Long userId;
-	
-	
 
 }
