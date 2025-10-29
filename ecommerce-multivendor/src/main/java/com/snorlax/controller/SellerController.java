@@ -18,6 +18,8 @@ import com.snorlax.config.JwtProvider;
 import com.snorlax.domain.AccountStatus;
 import com.snorlax.exception.SellerException;
 import com.snorlax.modal.Seller;
+import com.snorlax.modal.SellerReport;
+import com.snorlax.service.SellerReportService;
 import com.snorlax.service.SellerService;
 
 import lombok.RequiredArgsConstructor;
@@ -28,6 +30,7 @@ import lombok.RequiredArgsConstructor;
 public class SellerController {
 	
 	private final SellerService sellerService;
+	private final SellerReportService sellerReportService;
 	
 
 	@GetMapping("/{id}")
@@ -44,6 +47,15 @@ public class SellerController {
 		Seller seller = sellerService.getSellerProfile(jwt);
 		
 		return new ResponseEntity<>(seller, HttpStatus.OK);
+	}
+	
+	@GetMapping("/report")
+	public ResponseEntity<SellerReport> getSellerReport(@RequestHeader("Authorization") String jwt) throws Exception{
+		
+		Seller seller = sellerService.getSellerProfile(jwt);
+		SellerReport report = sellerReportService.getSellerReport(seller);
+		
+		return new ResponseEntity<>(report, HttpStatus.OK);
 	}
 	
 	@GetMapping
