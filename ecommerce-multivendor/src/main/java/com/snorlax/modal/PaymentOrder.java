@@ -28,7 +28,7 @@ public class PaymentOrder {
 	
 	private PaymentMethod method;
 	
-	private String paymentLink;
+	private String paymentLinkId;
 	
 	@ManyToOne
 	private User user;
